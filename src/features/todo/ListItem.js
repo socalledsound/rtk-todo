@@ -1,9 +1,15 @@
+import { useDispatch } from 'react-redux';
+import { removeItem } from './todoSlice';
+
 const ListItem = ({item}) => {
+
+  const dispatch = useDispatch();
+
     return (  
        
             <div className='list-item'> 
-              <button className='remove-item-button' onClick={() => true}>X</button>
-              <p className='item-text'>{item.name}</p>
+              <button className='remove-item-button' onClick={() => dispatch(removeItem(item))}>X</button>
+              <p className='item-text'>{item.name}</p> 
             </div>
     );
 }

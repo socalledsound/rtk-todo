@@ -12,19 +12,24 @@ const todoSlice = createSlice({
     name: 'todo',
     initialState,
     reducers: {
-        addItem : (state, action) => {
-           state.items.concat([{id: state.items.length, name: action.payload}])
+        addItem(state, action){
+           state.items.concat([{id: state.items.length, name: action.payload}]);
         },
         removeItem: (state, action) => {
-            state.items.filter(item => item.id !== action.payload.id)
+            return {
+                ...state,
+                items: state.items.filter(item => item.id !== action.payload.id),
         }
     }
+},
 
 })
 
 console.log(todoSlice);
 
-export const todoReducer = todoSlice.reducer
+export const todoReducer = todoSlice.reducer;
+
+export const { addItem, removeItem } = todoSlice.actions;
 
 export const selectAllItems = (state) => state.todo.items;
 
